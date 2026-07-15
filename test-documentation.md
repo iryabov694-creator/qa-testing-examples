@@ -5,7 +5,7 @@ This repository contains samples of functional test checklists and verification 
 ### 🟢 Full Interactive Checklist
 The complete regression test suite consisting of **100+ verification points** (including Onboarding, Profile/Auth, AI Career Assistant, AI Interview Simulation, and Resume Builder modules) is fully maintained and accessible via Google Sheets:
 
-👉 **[View Full Checklist in Google Sheets (Кликните для просмотра полной таблицы)](https://docs.google.com/spreadsheets/d/17vvnIcuvp_c5qleqaId8fO2jCNT4baNH-l03y4QZeDw/edit?usp=sharing)**
+👉 **[View Full Checklist in Google Sheets](https://docs.google.com/spreadsheets/d/17vvnIcuvp_c5qleqaId8fO2jCNT4baNH-l03y4QZeDw/edit?usp=sharing)**
 
 ---
 

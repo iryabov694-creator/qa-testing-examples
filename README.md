@@ -45,4 +45,5 @@ I am a detail-oriented QA Engineer with over 2 years of hands-on commercial expe
 ---
  **Connect with me:**
 * **Email:** i.ryabov694@gmail.com
-* **LinkedIn:** [://linkedin.com](https://www.://linkedin.com](https://www.linkedin.com/in/ilia-riabov-2049133a5/)
+* **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/ilia-riabov-2049133a5/)
+

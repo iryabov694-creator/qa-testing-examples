@@ -21,8 +21,7 @@ Below is a brief structure preview of the tested components:
 * **F. Resume & CV Builder:** Multi-step draft percentage progression tracking, paid features dialog triggers, multi-select tag chips validation, and layout pagination inside PDF exports.
 ---
 
-## 
-Paywall & Subscription State Machine Matrix
+## Paywall & Subscription State Machine Matrix
 
 This section demonstrates my ability to test complex, multi-tiered authorization and billing systems based on server-side flags (`is_client`, `is_partner`, `is_paid`, `partner_program_version`).
 

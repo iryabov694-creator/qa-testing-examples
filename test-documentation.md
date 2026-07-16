@@ -67,7 +67,7 @@ This section demonstrates my ability to test complex, multi-tiered authorization
 
 * ---
 
-## 🧪 Detailed Functional Test Cases (Web UI Validation & Network Requests)
+## Detailed Functional Test Cases (Web UI Validation & Network Requests)
 
 ### Test Case TC-PW-001: Verification of Screen Routing for a New User (No Account Type)
 * **Pre-conditions:**

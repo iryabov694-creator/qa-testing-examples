@@ -41,8 +41,7 @@ This section demonstrates my ability to test complex, multi-tiered authorization
 | **10**| `0, 1, 1, v1` *(Discount)* | **Full Access + Paywall #3 (Discounted Partner Upgrade):** Specific condition triggered for users with the `account_partner_discount_v2` product flag active. | `discount01@test.com` |
 
 
-
-* ---
+---
 
 ## Detailed Functional Test Cases (Web UI Validation & Network Requests)
 

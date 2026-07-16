@@ -64,3 +64,67 @@ This section demonstrates my ability to test complex, multi-tiered authorization
 * **Condition:** System detects a legacy V1 user returning with an expired product session database log.
 * **Backend Mitigation:** Forced baseline rewrite: `is_client = true`, `paid = false`.
 * **Expected Result:** User bypasses the Account Type Selector entirely and is redirected straight to **Step 2 (Paywall #2)** to re-verify payment credentials.
+
+* ---
+
+## 🧪 Detailed Functional Test Cases (Web UI Validation & Network Requests)
+
+### Test Case TC-PW-001: Verification of Screen Routing for a New User (No Account Type)
+* **Pre-conditions:**
+  * User has successfully registered on the platform.
+  * Server response data for the user profile contains: `is_client: false`, `is_partner: false`, `is_paid: false`.
+* **Test Steps:**
+  1. Open browser DevTools and navigate to the Network tab.
+  2. Log in or refresh the page to trigger the user profile API request.
+  3. Verify the values of `is_client`, `is_partner`, and `is_paid` in the response payload.
+  4. Observe the displayed screen in the browser.
+* **Expected Result:**
+  * The network response matches the pre-conditions (`false` for all flags).
+  * Direct access to any inner URLs is blocked.
+  * **Paywall #1 (Account Type Selection)** is displayed on the screen, showing choices for "Client" or "Partner".
+
+---
+
+### Test Case TC-PW-002: Dynamic UI Update upon Selecting "Client" Account Type
+* **Pre-conditions:**
+  * User is currently on **Paywall #1** (`is_client: false`, `is_partner: false`, `is_paid: false`).
+* **Test Steps:**
+  1. Click on the "Client" selection card.
+  2. In DevTools -> Network, verify that a valid POST/PUT request is sent to update the profile state.
+  3. Verify that the server successfully returns `is_client: true` (`1, 0, 0`) in the response.
+  4. Observe the UI transition without manually refreshing the browser.
+* **Expected Result:**
+  * The account type is successfully updated on the backend.
+  * **Paywall #1** automatically disappears from the screen.
+  * **Paywall #2 (Subscription Selector)** immediately opens, displaying 3 specific client pricing plans: $30, $59, and $99.
+
+---
+
+### Test Case TC-PW-003: UI Refresh and Feature Unlocking during Client-to-Partner Upgrade
+* **Pre-conditions:**
+  * User is logged in as an active paid Client (`is_client: true`, `is_partner: false`, `is_paid: true`).
+  * Full access to client-level dashboard features is unlocked.
+* **Test Steps:**
+  1. Go to the "Profile / User Settings" page.
+  2. Verify that the "Upgrade Account" button is visible and clickable.
+  3. Click the "Upgrade Account" button and complete the payment transaction.
+  4. In DevTools -> Network, check the profile data request and ensure `is_partner` has changed to `true`.
+* **Expected Result:**
+  * Clicking "Upgrade Account" opens an option screen limited strictly to the "Partner" track.
+  * After payment, `is_paid` remains `true` (the active session is not dropped).
+  * The web interface dynamically updates in real-time, unlocking all partner-tier modules and dashboards.
+
+---
+
+### Test Case TC-PW-004: Forced Redirect to Subscription Page for Unpaid Returning Users
+* **Pre-conditions:**
+  * User has selected an account tier but has an expired or unpaid subscription (`is_client: true`, `is_partner: false`, `is_paid: false`).
+* **Test Steps:**
+  1. Clear browser application cache / session storage data.
+  2. Open a new browser tab and enter a direct URL link to an inner dashboard feature (e.g., `/dashboard/main`).
+  3. In DevTools -> Network, observe the intercepted requests and routing responses.
+* **Expected Result:**
+  * The system intercepts the direct URL navigation.
+  * The user is immediately force-redirected away from the inner dashboard to the **Paywall #2 (Subscription)** page.
+  * All main navigation features and platform interfaces remain completely hidden until the subscription payment is verified.
+
